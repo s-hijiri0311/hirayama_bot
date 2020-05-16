@@ -10,6 +10,32 @@ function createForm(){
   const formFile = DriveApp.getFileById(form.getId());//フォルダの指定
   DriveApp.getFolderById(id).addFile(formFile);//ファイルの追加
   //DriveApp.getRootFolder().removeFile(formFile);//ファイルの削除
+  
   form.setDescription(formDescription);
+  form.addTextItem().setTitle('氏名').setRequired(true);
+  
+  const validationEmail = FormApp.createTextValidation().requireTextIsEmail().build();
+  form.addTextItem().setTitle('メールアドレス').setRequired(true).setValidation(validationEmail);
+  
+  
+    form.addMultipleChoiceItem()
+    .setTitle('5/1')
+    .setChoiceValues(['参加', '遅刻','不参加'])
+    .setRequired(true);
+    
+    form.addMultipleChoiceItem()
+    .setTitle('5/8')
+    .setChoiceValues(['参加', '遅刻','不参加'])
+    .setRequired(true);
+    
+    form.addMultipleChoiceItem()
+    .setTitle('5/15')
+    .setChoiceValues(['参加', '遅刻','不参加'])
+    .setRequired(true);
+    
+    form.addMultipleChoiceItem()
+    .setTitle('5/22')
+    .setChoiceValues(['参加', '遅刻','不参加'])
+    .setRequired(true);
   
 }
