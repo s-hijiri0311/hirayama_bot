@@ -1,11 +1,14 @@
 function createForm(){
  
   const ss = SpreadsheetApp.getActiveSpreadsheet()
+  const dataValues = ss.getSheetByName('予定日').getDataRange().getValues();
+  dataValues.shift()
   const values = ss.getSheetByName('平山シャトル予定表').getDataRange().getValues();
   const formTitle = values[0][1]; //タイトル
   const formDescription = values[1][1]; //概要
  
   const form = FormApp.create(formTitle);
+  
   const id = PropertiesService.getScriptProperties().getProperty('FOLDER_ID');//スクリプトプロパティにFOLDER_ID
   const formFile = DriveApp.getFileById(form.getId());//フォルダの指定
   DriveApp.getFolderById(id).addFile(formFile);//ファイルの追加
@@ -37,5 +40,17 @@ function createForm(){
     .setTitle('5/22')
     .setChoiceValues(['参加', '遅刻','不参加'])
     .setRequired(true);
-  
+    
+    
+    form.addCheckboxItem()
+    .setTitle('参加可能な日付は？')
+    .setChoiceValues(generateArray(dataValues,1))
+    .showOtherOption(true)
+    .setRequired(true);
+    
+    
+    form.addListItem()
+    .setTitle('参加可能日は？')
+    .setChoiceValues(generateArray(dataValues,1))
+    .setRequired(true);
 }
