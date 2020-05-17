@@ -21,7 +21,8 @@ function createForm(){
   form.addTextItem().setTitle('メールアドレス').setRequired(true).setValidation(validationEmail);
   
   
-    form.addMultipleChoiceItem()
+  /*
+    form.addMultipleChoiceItem()//ラジオボタン
     .setTitle('5/1')
     .setChoiceValues(['参加', '遅刻','不参加'])
     .setRequired(true);
@@ -42,15 +43,25 @@ function createForm(){
     .setRequired(true);
     
     
-    form.addCheckboxItem()
+    form.addCheckboxItem()//チェックボックス
     .setTitle('参加可能な日付は？')
     .setChoiceValues(generateArray(dataValues,1))
     .showOtherOption(true)
     .setRequired(true);
     
     
-    form.addListItem()
+    form.addListItem()//プルダウンリスト
     .setTitle('参加可能日は？')
     .setChoiceValues(generateArray(dataValues,1))
     .setRequired(true);
+    
+    */
+    
+    var gridItem = form.addGridItem();
+        gridItem.setTitle('参加可能日は？')
+        gridItem.setRows(['1日', '8日', '15日','22日']) // 予定日
+        gridItem.setColumns(['参加', '遅刻', '不参加','保留']); // 選択項目
+        var gridValidation = FormApp.createGridValidation()
+    
+    
 }
