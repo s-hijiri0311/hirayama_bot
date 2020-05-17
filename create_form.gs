@@ -59,7 +59,7 @@ function createForm(){
     
     var gridItem = form.addGridItem();
         gridItem.setTitle('参加可能日は？')
-        gridItem.setRows(['1日', '8日', '15日','22日']) // 予定日
+        gridItem.setRows(generateArray(dataValues,2)) // 予定日
         gridItem.setColumns(['参加', '遅刻', '不参加','保留']); // 選択項目
         var gridValidation = FormApp.createGridValidation()
     
