@@ -56,10 +56,15 @@ function createForm(){
     .setRequired(true);
     
     */
+    var dateArray=generateArray(dataValues,2);
+    for(var i=0;i<dateArray.length;i++)
+    dateArray[i] = Utilities.formatDate(dateArray[i], "JST","MM'/'dd'('E')'")//これを追加
+    
+    
     
     var gridItem = form.addGridItem();
         gridItem.setTitle('参加可能日は？')
-        gridItem.setRows(generateArray(dataValues,2)) // 予定日
+        gridItem.setRows(dateArray) // 予定日
         gridItem.setColumns(['参加', '遅刻', '不参加','保留']); // 選択項目
         var gridValidation = FormApp.createGridValidation()
     
