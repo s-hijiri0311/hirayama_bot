@@ -1,6 +1,6 @@
 
-var sheetname="平山シャトル予定表"
-var MAIL_ADRESS=PropertiesService.getScriptProperties().getProperty('MAIL_ADRESS');
+var sheetname="予定表"
+var MAIL_ADDRESS=PropertiesService.getScriptProperties().getProperty('MAIL_ADDRESS');
 function scheduleReload() {
   
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -18,14 +18,16 @@ function scheduleReload() {
   
   //対象月を指定
   var startDate=new Date(); //取得開始日
-  startDate.setDate(startDate.getDate()-3);
-  startDate.setMonth(startDate.getMonth()+1);
   var endDate=new Date();
-  endDate.setMonth(endDate.getMonth()+2);　//取得終了日
+  endDate.setMonth(endDate.getMonth()+1);　//取得終了日
  
   var myEvents=myCal.getEvents(startDate,endDate); //カレンダーのイベントを取得
+
  
-  
-    
+  sheet.appendRow(["予定表タイトル"]);
+  sheet.appendRow(["予定を入力してください"]);
+  for(var i in myEvents){
+  sheet.appendRow([myEvents[i].getTitle(),myEvents[i].getStartTime()]);
+  }  
     
 }
