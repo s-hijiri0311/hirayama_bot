@@ -1,5 +1,7 @@
 function createForm(){
  
+  scheduleReload();
+  
   const ss = SpreadsheetApp.getActiveSpreadsheet()
   const dataValues = ss.getSheetByName('予定日').getDataRange().getValues();
   dataValues.shift()
