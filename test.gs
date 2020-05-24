@@ -1,3 +1,3 @@
-function myFunction() {
+function testFunction() {
   sendLine("ヤッホー");
 }
